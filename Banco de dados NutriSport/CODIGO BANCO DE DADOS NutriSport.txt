@@ -1,0 +1,100 @@
+Drop database if exists bd_academia;
+
+create database bd_academia;
+
+use bd_academia;
+
+
+
+create table tb_aluno 
+
+( CodAluno int(30) not null,
+  
+Nome char(30) not null,
+  
+Idade int(5) not null,
+  
+Endereço varchar(100) not null,
+  
+TelefoneAl varchar(30) not null,
+  
+primary key (CodAluno)
+
+);
+
+
+
+create table tb_professor 
+
+( CodProfessor int(30) not null,
+  
+Nome char(30) not null,
+  
+CEP int(5) not null,
+  
+NumResid varchar(100) not null,
+  
+TelefoneProf varchar(30) not null,
+  
+primary key (CodProfessor)
+
+);
+
+
+
+create table tb_avfisica
+ 
+( CodAv int(30) not null,
+  
+Percegord char(30) not null,
+  
+Percemmus int(5) not null,
+  
+Medidas float(30) not null,
+  
+Peso float(30) not null,
+  
+Altura float(30) not null,
+  
+primary key (CodAv)
+
+);
+
+
+
+create table tb_planotreino 
+
+( CodTreino int(30) not null,
+ 
+Categoria char(30) not null,
+  
+primary key (CodTreino)
+
+);
+
+
+
+create table tb_AlunProfesPlTreino
+
+( CodAlProPTreino int(30) not null,
+  
+CodAluno int(30) not null,
+  
+CodProfessor int(30) not null,
+  
+CodTreino int(30) not null
+);
+
+
+
+ALTER TABLE tb_AlunProfesPlTreino ADD CONSTRAINT fk_CodAluno FOREIGN KEY ( CodAluno ) REFERENCES tb_aluno ( CodAluno ) ;
+
+ALTER TABLE tb_AlunProfesPlTreino ADD CONSTRAINT fk_CodProfessor FOREIGN KEY ( CodProfessor ) REFERENCES tb_professor ( CodProfessor ) ;
+
+ALTER TABLE tb_AlunProfesPlTreino ADD CONSTRAINT fk_CodTreino FOREIGN KEY ( CodTreino ) REFERENCES tb_planotreino ( CodTreino ) ;
+
+
+
+
+drop table tb_AlunProfesPlTreino
+
